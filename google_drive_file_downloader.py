@@ -3,7 +3,6 @@
 
 # In[5]:
 
-
 from __future__ import print_function
 import pickle
 import os.path
@@ -14,36 +13,22 @@ from mimetypes import MimeTypes
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
-from googleapiclient.http import MediaIoBaseDownload, MediaFileUpload
-  
-
-    
-    
-    
-    
-    
-    
+from googleapiclient.http import MediaIoBaseDownload, MediaFileUpload   
 global SCOPES
 
 # Define the scopes
 SCOPES = ['https://www.googleapis.com/auth/drive']
-
-
-
 # Variable self.creds will
 # store the user access token.
 # If no valid token found
 # we will create one.
 creds = None
-
 # The file token.pickle stores the
 # user's access and refresh tokens. It is
 # created automatically when the authorization
 # flow completes for the first time.
-
 # Check if file token.pickle exists
 if os.path.exists('token.pickle'):
-
     # Read the token from the file and
     # store it in the variable self.creds
     with open('token.pickle', 'rb') as token:
@@ -76,22 +61,8 @@ results = service.files().list(pageSize=100, fields="files(id, name)").execute()
 items = results.get('files', [])
 
 # print a list of files
-
 print("Here's a list of files: \n")
 print(*items, sep="\n", end="\n\n")
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
 
 file_id = input("Enter file id: ")
 request = service.files().get_media(fileId=file_id)
